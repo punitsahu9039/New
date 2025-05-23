@@ -7,6 +7,8 @@
 
     "dev": "vite",
   "build": "vite build",
+    "postinstall": "chmod +x node_modules/.bin/vite",
+
     "serve": "vite preview"
   },
   "dependencies": {
