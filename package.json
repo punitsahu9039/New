@@ -7,7 +7,6 @@
 
     "dev": "vite",
   "build": "vite build",
-"postinstall": "echo Postinstall skipped on Windows",
 
     "serve": "vite preview"
   },
