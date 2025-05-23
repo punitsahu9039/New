@@ -7,7 +7,7 @@
 
     "dev": "vite",
   "build": "vite build",
-    "postinstall": "chmod +x node_modules/.bin/vite",
+"postinstall": "echo Postinstall skipped on Windows",
 
     "serve": "vite preview"
   },
