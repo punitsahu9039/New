@@ -8,10 +8,8 @@ import {
   FaPhone,
   FaRegClock,
   FaSmile,
-  FaChartLine,
   FaArrowUp,
   FaArrowDown,
-  FaHome
 } from "react-icons/fa";
 import { IndianRupee, Star } from "lucide-react";
 import CountUp from "react-countup";
@@ -19,31 +17,61 @@ import CountUp from "react-countup";
 // ====== Data ======
 const banks = [
   {
+    name: "State Bank of India (SBI)",
+    logo: "/banks/sbi.png",
+    interest: 9.20,
+    interestRange: "9.20% – 11.00%",
+    processing: "0.35% + GST",
+    maxLoan: 50000000,
+    tenure: 15,
+    badge: "Most Trusted"
+  },
+  {
     name: "HDFC Bank",
     logo: "/banks/hdfc.png",
     interest: 9.50,
-    interestRange: "9.50% – 11.80%",
+    interestRange: "9.50% – 11.25%",
     processing: "Up to 1% + GST",
     maxLoan: 50000000,
     tenure: 15,
-    badge: "Fast Approval"
+    badge: "Lowest Rate"
   },
   {
     name: "ICICI Bank",
     logo: "/banks/icici.png",
     interest: 9.75,
-    interestRange: "9.75% – 12.50%",
+    interestRange: "9.75% – 11.50%",
     processing: "Up to 1% + GST",
     maxLoan: 50000000,
     tenure: 15,
-    badge: "Popular"
+    badge: "Best Service"
   },
   {
     name: "Axis Bank",
     logo: "/banks/axis.png",
     interest: 9.80,
-    interestRange: "9.80% – 12.00%",
+    interestRange: "9.80% – 11.50%",
     processing: "Up to 1% + GST",
+    maxLoan: 50000000,
+    tenure: 15,
+    badge: ""
+  },
+  {
+    name: "Punjab National Bank",
+    logo: "/banks/pnb.png",
+    interest: 9.25,
+    interestRange: "9.25% – 11.00%",
+    processing: "0.35% + GST",
+    maxLoan: 50000000,
+    tenure: 15,
+    badge: ""
+  },
+  {
+    name: "Bank of Baroda",
+    logo: "/banks/bob.png",
+    interest: 9.20,
+    interestRange: "9.20% – 11.00%",
+    processing: "0.50% + GST",
     maxLoan: 50000000,
     tenure: 15,
     badge: ""
@@ -51,20 +79,10 @@ const banks = [
   {
     name: "Kotak Mahindra Bank",
     logo: "/banks/kotak.png",
-    interest: 10.00,
-    interestRange: "10.00% – 12.75%",
+    interest: 9.65,
+    interestRange: "9.65% onwards",
     processing: "Up to 1% + GST",
-    maxLoan: 40000000,
-    tenure: 12,
-    badge: ""
-  },
-  {
-    name: "IDFC First Bank",
-    logo: "/banks/idfc.png",
-    interest: 10.25,
-    interestRange: "10.25% – 13.00%",
-    processing: "Up to 1.25% + GST",
-    maxLoan: 30000000,
+    maxLoan: 50000000,
     tenure: 15,
     badge: ""
   }
@@ -76,80 +94,73 @@ const trustBadges = [
   { label: "4.9/5 Google Rating", icon: <FaCheckCircle className="text-yellow-500" /> }
 ];
 
-const mediaMentions = [
-  "https://upload.wikimedia.org/wikipedia/commons/6/6b/NDTV_logo.png",
-  "https://upload.wikimedia.org/wikipedia/commons/6/66/Economic_Times_logo.png",
-  "https://upload.wikimedia.org/wikipedia/commons/4/4a/Moneycontrol_logo.png"
-];
-
 const formSteps = [
-  { label: "Loan Amount (₹)", type: "number", name: "amount", placeholder: "e.g. 1000000" },
-  { label: "Property Type", type: "select", name: "type", options: ["Residential", "Commercial"] },
-  { label: "City", type: "text", name: "city", placeholder: "e.g. Mumbai" },
-  { label: "Mobile Number", type: "tel", name: "mobile", placeholder: "e.g. 9876543210" }
+  { label: "Loan Amount", type: "number", name: "amount", placeholder: "Loan Amount" },
+  { label: "Employment Type", type: "select", name: "employment", options: ["Salaried", "Self-Employed"] },
+  { label: "City", type: "text", name: "city", placeholder: "City" },
+  { label: "Mobile Number", type: "tel", name: "mobile", placeholder: "Mobile Number" }
 ];
 
 const testimonials = [
   {
-    name: "Ravi Sharma",
+    name: "Rohit Sharma",
+    position: "Business Owner",
+    quote: "Hously Finserv made my loan against property process seamless. Fast approval and expert guidance.",
+    rating: 5,
+    image: "https://randomuser.me/api/portraits/men/32.jpg"
+  },
+  {
+    name: "Priya Patel",
+    position: "Teacher",
+    quote: "I got the best rate for my property loan. The team was transparent and always available for queries.",
+    rating: 5,
+    image: "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    name: "Vikram Mehta",
     position: "IT Professional",
-    quote: "Quick approval and best rates. I got my property loan sanctioned in just 3 days!",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/men/52.jpg"
-  },
-  {
-    name: "Meena Gupta",
-    position: "Businesswoman",
-    quote: "Very smooth process and minimal documentation. Highly recommended for property loans.",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/women/58.jpg"
-  },
-  {
-    name: "Anil Kumar",
-    position: "Doctor",
-    quote: "Professional service and great support. Got the best deal for my commercial property.",
+    quote: "Quick disbursal and minimum paperwork. Highly recommend for anyone looking for a loan against property.",
     rating: 4,
-    image: "https://randomuser.me/api/portraits/men/36.jpg"
+    image: "https://randomuser.me/api/portraits/men/66.jpg"
   }
 ];
 
 const features = [
   "Loan against residential or commercial property",
-  "Loan amount up to 70% of property value",
-  "Lower interest rates compared to personal loans",
-  "Flexible repayment options up to 15 years",
-  "Overdraft facility available",
-  "Tax benefits as applicable"
+  "Loan amount up to ₹5 Crores",
+  "Interest rates starting from 9.20%",
+  "Flexible tenure up to 15 years",
+  "Quick processing & minimal documentation",
+  "Balance transfer/top-up facility"
 ];
 
 const eligibility = [
-  "Property owners with clear title documents",
-  "Age between 25 to 65 years at loan maturity",
-  "Salaried individuals with minimum 2 years of work experience",
-  "Self-employed professionals with 3 years of practice",
-  "Property should be free from encumbrances"
+  "Indian resident aged 21–65 years",
+  "Salaried or self-employed individuals",
+  "Clear property title and documentation",
+  "Stable income and repayment capacity",
+  "Property in approved locations"
 ];
 
 const documents = [
   "Identity Proof (Aadhaar, PAN, Passport, Voter ID)",
   "Address Proof (Aadhaar, Passport, Utility Bills)",
-  "Income Proof (Salary Slips, Form 16, ITR)",
-  "Property Documents (Registry, Chain of Documents)",
-  "Bank Statements for the last 6 months",
-  "Recent Property Valuation Report"
+  "Income Proof (Salary Slips, ITR, Balance Sheet)",
+  "Property Documents (Title Deed, Registry, Chain)",
+  "Bank Statements for last 6 months",
+  "Photograph"
 ];
 
-const PropertyHappyCustomers = () => {
+// ==== HappyCustomers Section ====
+const HappyCustomers = () => {
   const [animatedCards, setAnimatedCards] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
-      const section = document.getElementById('property-happy-customers-section');
+      const section = document.getElementById('happy-customers-section');
       if (!section) return;
-
       const sectionTop = section.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
-
       if (sectionTop < windowHeight * 0.75) {
         setTimeout(() => {
           const newAnimatedCards = {};
@@ -160,27 +171,23 @@ const PropertyHappyCustomers = () => {
         }, 300);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <section
-      id="property-happy-customers-section"
+      id="happy-customers-section"
       className="section-padding bg-gray-50 h-auto md:h-full"
     >
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-gradient">Happy Property Loan Customers</span>
+            <span className="text-gradient">Happy Customers</span>, Real Stories
           </h2>
           <p className="text-gray-600">
-            See what our clients say about their property loan experience.
+            Don't just take our word for it. See what our clients have to say about their experience with Hously Finserv.
           </p>
         </div>
         <div className="relative">
@@ -193,7 +200,7 @@ const PropertyHappyCustomers = () => {
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <div className="glass-card rounded-xl p-6 hover-scale" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="glass-card rounded-xl p-6 hover:scale-105 transition shadow bg-white">
                   <div className="flex items-center mb-4">
                     <img
                       src={testimonial.image}
@@ -209,7 +216,7 @@ const PropertyHappyCustomers = () => {
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-5 w-5 ${i < testimonial.rating ? 'text-gold-500 fill-gold-500' : 'text-gray-300'}`}
+                        className={`h-5 w-5 ${i < testimonial.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
                       />
                     ))}
                   </div>
@@ -233,15 +240,15 @@ const PropertyHappyCustomers = () => {
   );
 };
 
-function PropertyStatsBar() {
+function CenteredStatsBar() {
   const stats = [
     {
       icon: <IndianRupee size={20} strokeWidth={2.2} className="text-[#0074d9]" />,
-      value: 1200,
+      value: 500,
       suffix: "Cr+",
-      label: "Property Loans Disbursed",
+      label: "Loans Disbursed",
       description: "Since 2020",
-      trend: "6.8%",
+      trend: "6.1%",
       trendType: "up"
     },
     {
@@ -255,19 +262,11 @@ function PropertyStatsBar() {
     },
     {
       icon: <FaSmile className="text-yellow-600 text-xl" />,
-      value: 18000,
+      value: 8000,
       suffix: "+",
       label: "Happy Customers",
       description: "Across India",
-      trend: "4.1%",
-      trendType: "up"
-    },
-    {
-      icon: <FaHome className="text-purple-700 text-xl" />,
-      value: 1100,
-      label: "Cities Served",
-      description: "Pan India",
-      trend: "1.2%",
+      trend: "3.8%",
       trendType: "up"
     }
   ];
@@ -312,7 +311,7 @@ function PropertyStatsBar() {
 const PropertyLoanPage = () => {
   const [formData, setFormData] = useState({
     amount: "",
-    type: "",
+    employment: "",
     city: "",
     mobile: ""
   });
@@ -347,7 +346,7 @@ const PropertyLoanPage = () => {
       {/* Hero Section with image background */}
       <div className="relative h-[400px] md:h-[520px] flex items-center justify-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+          src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1350&q=80"
           alt="Property Loan Banner"
           className="absolute w-full h-full object-cover z-0"
           loading="eager"
@@ -356,10 +355,10 @@ const PropertyLoanPage = () => {
         <div className="absolute inset-0 bg-black/60 z-10" />
         <div className="relative z-20 text-white text-center flex flex-col items-center px-4">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
-            Unlock Your Property’s Value
+            Loan Against Property, Simplified
           </h1>
           <p className="text-lg md:text-2xl font-medium mb-8 drop-shadow">
-            Leverage your property for funds. Compare top banks. Get instant offers.
+            Compare India's top banks. Get instant, personalized offers.
           </p>
           <div className="flex flex-wrap justify-center items-center space-x-4 md:space-x-6">
             <Button
@@ -384,7 +383,7 @@ const PropertyLoanPage = () => {
         </div>
       </div>
 
-      {/* Get Your Personalized Offer (multi-step form) */}
+      {/* Get Your Personalized Offer (multi-step form, label hidden, only placeholder, w-full input) */}
       <div id="get-offer" className="container mx-auto mt-[-70px] mb-12 z-30 relative">
         <div className="bg-white rounded-xl shadow-lg p-8 max-w-xl mx-auto">
           {!leadSubmitted ? (
@@ -396,14 +395,15 @@ const PropertyLoanPage = () => {
                 Get Your Personalized Offer
               </div>
               <div className="mb-2 text-gray-500 text-center">No impact on credit score. Takes less than 30 seconds.</div>
-              <div className="mb-6 w-full">
-                <label className="block mb-2 font-semibold">{formSteps[step].label}</label>
+              <div className="mb-6 w-full min-w-0">
+                {/* No label, only input with placeholder */}
                 {formSteps[step].type === "select" ? (
                   <select
-                    className="w-full border rounded px-4 py-2"
+                    className="w-full border rounded px-4 py-2 text-base"
                     value={formData[formSteps[step].name]}
                     onChange={handleFormChange}
                     required
+                    style={{ minWidth: 0 }}
                   >
                     <option value="">Select</option>
                     {formSteps[step].options.map(opt => (
@@ -412,12 +412,13 @@ const PropertyLoanPage = () => {
                   </select>
                 ) : (
                   <input
-                    className="w-full border rounded px-4 py-2"
+                    className="w-full border rounded px-4 py-2 text-base"
                     type={formSteps[step].type}
                     placeholder={formSteps[step].placeholder}
                     value={formData[formSteps[step].name]}
                     onChange={handleFormChange}
                     required
+                    style={{ minWidth: 0 }}
                   />
                 )}
               </div>
@@ -446,7 +447,7 @@ const PropertyLoanPage = () => {
               <div className="mb-4">Your details have been submitted.<br />Our expert will contact you soon with the best property loan offers.</div>
               <Button
                 className="bg-blue-600 text-white px-6 py-2 rounded font-bold shadow hover:bg-blue-700 transition"
-                onClick={() => { setLeadSubmitted(false); setStep(0); setFormData({ amount: "", type: "", city: "", mobile: "" }); }}
+                onClick={() => { setLeadSubmitted(false); setStep(0); setFormData({ amount: "", employment: "", city: "", mobile: "" }); }}
               >
                 Submit Another
               </Button>
@@ -455,12 +456,12 @@ const PropertyLoanPage = () => {
         </div>
       </div>
 
-      {/* Stats Bar */}
-      <PropertyStatsBar />
+      {/* ==== STATS BAR (NOW ABOVE CARDS) ==== */}
+      <CenteredStatsBar />
 
       {/* Features, Eligibility, Documents */}
       <div className="container mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
-        {/* Features */}
+        {/* Key Features */}
         <div className="bg-white rounded-xl shadow p-7 border border-gray-200 flex flex-col">
           <h2
             className="text-lg md:text-xl font-semibold mb-4"
@@ -517,11 +518,12 @@ const PropertyLoanPage = () => {
         >
           Compare Top Banks for Property Loans
         </h2>
+        {/* --- Filter Inputs: width exactly like Home/Business Loan page --- */}
         <div className="flex flex-wrap gap-4 mb-4 justify-center">
           <input
             type="number"
-            placeholder="Loan Amount (₹)"
-            className="border rounded px-4 py-2"
+            placeholder="Loan Amount"
+            className="border rounded px-4 py-2 w-44"
             value={filterAmount}
             onChange={e => setFilterAmount(e.target.value)}
             min={100000}
@@ -529,8 +531,8 @@ const PropertyLoanPage = () => {
           />
           <input
             type="number"
-            placeholder="Tenure (years)"
-            className="border rounded px-4 py-2"
+            placeholder="Tenure"
+            className="border rounded px-4 py-2 w-44"
             value={filterTenure}
             onChange={e => setFilterTenure(e.target.value)}
             min={1}
@@ -566,7 +568,7 @@ const PropertyLoanPage = () => {
                   </td>
                   <td className="px-4 py-3">{bank.interestRange}</td>
                   <td className="px-4 py-3">{bank.processing}</td>
-                  <td className="px-4 py-3">{`₹${bank.maxLoan.toLocaleString()}`}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">{`₹${bank.maxLoan.toLocaleString()}`}</td>
                   <td className="px-4 py-3">{bank.tenure} yrs</td>
                   <td className="px-4 py-3">
                     <Button className="bg-gradient-to-r from-blue-700 to-blue-400 text-white px-4 py-2 rounded font-bold hover:from-blue-800 hover:to-blue-500 transition">Apply</Button>
@@ -578,7 +580,7 @@ const PropertyLoanPage = () => {
         </div>
       </div>
 
-      {/* Trust Badges & Media */}
+      {/* Trust Badges ONLY (media logos REMOVED) */}
       <div className="container mx-auto mb-12 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex gap-6">
           {trustBadges.map((badge, idx) => (
@@ -588,16 +590,11 @@ const PropertyLoanPage = () => {
             </div>
           ))}
         </div>
-        <div className="flex gap-4 items-center">
-          <span className="text-gray-500 font-medium">As seen in:</span>
-          {mediaMentions.map((logo, idx) => (
-            <img key={idx} src={logo} alt="media" className="h-8 w-auto bg-white rounded shadow" />
-          ))}
-        </div>
+        {/* MEDIA LOGOS/AS SEEN IN SECTION REMOVED */}
       </div>
 
       {/* Testimonials Section */}
-      <PropertyHappyCustomers />
+      <HappyCustomers />
 
       {/* Footer (blank) */}
       <footer ref={footerRef}></footer>

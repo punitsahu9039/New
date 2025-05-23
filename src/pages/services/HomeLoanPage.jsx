@@ -8,14 +8,13 @@ import {
   FaPhone,
   FaRegClock,
   FaSmile,
-  FaChartLine,
   FaArrowUp,
-  FaArrowDown
+  FaArrowDown,
 } from "react-icons/fa";
 import { IndianRupee, Star } from "lucide-react";
 import CountUp from "react-countup";
 
-// ====== Banks Data (May 2025) ======
+// ====== Data ======
 const banks = [
   {
     name: "State Bank of India (SBI)",
@@ -31,38 +30,18 @@ const banks = [
     name: "HDFC Bank",
     logo: "/banks/hdfc.png",
     interest: 8.45,
-    interestRange: "8.45% onwards",
+    interestRange: "8.45% – 9.65%",
     processing: "Up to 0.50% (min ₹3,300) + GST",
     maxLoan: 100000000,
     tenure: 30,
     badge: "Lowest Rate"
   },
   {
-    name: "Bank of Baroda",
-    logo: "/banks/bob.png",
-    interest: 8.00,
-    interestRange: "8.00% – 9.65%",
-    processing: "0.50% + GST",
-    maxLoan: 100000000,
-    tenure: 30,
-    badge: "Women Special"
-  },
-  {
-    name: "Punjab National Bank",
-    logo: "/banks/pnb.png",
-    interest: 8.05,
-    interestRange: "8.05% – 9.85%",
-    processing: "Zero Processing Fee",
-    maxLoan: 100000000,
-    tenure: 30,
-    badge: "No Processing Fee"
-  },
-  {
     name: "ICICI Bank",
     logo: "/banks/icici.png",
     interest: 8.75,
-    interestRange: "8.75% onwards",
-    processing: "0.50% + GST",
+    interestRange: "8.75% – 9.90%",
+    processing: "Up to 0.50% + GST",
     maxLoan: 100000000,
     tenure: 30,
     badge: "Best Service"
@@ -71,27 +50,27 @@ const banks = [
     name: "Axis Bank",
     logo: "/banks/axis.png",
     interest: 8.75,
-    interestRange: "8.75% – 12.80%",
-    processing: "Up to 1% (min ₹10,000) + GST",
+    interestRange: "8.75% – 9.65%",
+    processing: "Up to 1% + GST",
     maxLoan: 100000000,
     tenure: 30,
-    badge: "Fast Approval"
+    badge: ""
   },
   {
-    name: "Bank of Maharashtra",
-    logo: "/banks/mah.png",
-    interest: 8.10,
-    interestRange: "8.10% onwards",
-    processing: "Zero Processing Fee",
+    name: "Punjab National Bank",
+    logo: "/banks/pnb.png",
+    interest: 8.05,
+    interestRange: "8.05% – 9.85%",
+    processing: "0.35% + GST",
     maxLoan: 100000000,
     tenure: 30,
-    badge: "Zero Fee"
+    badge: ""
   },
   {
-    name: "Canara Bank",
-    logo: "/banks/canara.png",
+    name: "Bank of Baroda",
+    logo: "/banks/bob.png",
     interest: 8.00,
-    interestRange: "8.00% – 10.75%",
+    interestRange: "8.00% – 9.65%",
     processing: "0.50% + GST",
     maxLoan: 100000000,
     tenure: 30,
@@ -102,17 +81,7 @@ const banks = [
     logo: "/banks/kotak.png",
     interest: 8.65,
     interestRange: "8.65% onwards",
-    processing: "0.50% + GST",
-    maxLoan: 100000000,
-    tenure: 30,
-    badge: ""
-  },
-  {
-    name: "IDFC First Bank",
-    logo: "/banks/idfc.png",
-    interest: 8.85,
-    interestRange: "8.85% onwards",
-    processing: "Up to 3% + GST",
+    processing: "Up to 0.50% + GST",
     maxLoan: 100000000,
     tenure: 30,
     badge: ""
@@ -125,17 +94,11 @@ const trustBadges = [
   { label: "4.9/5 Google Rating", icon: <FaCheckCircle className="text-yellow-500" /> }
 ];
 
-const mediaMentions = [
-  "https://upload.wikimedia.org/wikipedia/commons/6/6b/NDTV_logo.png",
-  "https://upload.wikimedia.org/wikipedia/commons/6/66/Economic_Times_logo.png",
-  "https://upload.wikimedia.org/wikipedia/commons/4/4a/Moneycontrol_logo.png"
-];
-
 const formSteps = [
-  { label: "Loan Amount (₹)", type: "number", name: "amount", placeholder: "e.g. 5000000" },
+  { label: "Loan Amount", type: "number", name: "amount", placeholder: "Loan Amount" },
   { label: "Employment Type", type: "select", name: "employment", options: ["Salaried", "Self-Employed"] },
-  { label: "City", type: "text", name: "city", placeholder: "e.g. Mumbai" },
-  { label: "Mobile Number", type: "tel", name: "mobile", placeholder: "e.g. 9876543210" }
+  { label: "City", type: "text", name: "city", placeholder: "City" },
+  { label: "Mobile Number", type: "tel", name: "mobile", placeholder: "Mobile Number" }
 ];
 
 const testimonials = [
@@ -162,6 +125,33 @@ const testimonials = [
   }
 ];
 
+const features = [
+  "Loan amount up to ₹10 Crores",
+  "Lowest interest rates starting from 8.00%",
+  "Flexible tenure up to 30 years",
+  "Quick digital approval process",
+  "Zero prepayment charges",
+  "Doorstep service for documentation"
+];
+
+const eligibility = [
+  "Indian resident aged 21–65 years",
+  "Salaried or self-employed individuals",
+  "Minimum 2 years of work/business experience",
+  "Good credit score (700+ preferred)",
+  "Stable income and repayment capacity"
+];
+
+const documents = [
+  "Identity Proof (Aadhaar, PAN, Passport, Voter ID)",
+  "Address Proof (Aadhaar, Passport, Utility Bills)",
+  "Income Proof (Salary Slips, Form 16, ITR)",
+  "Property Documents (Registry, Chain of Documents)",
+  "Bank Statements for the last 6 months",
+  "Photograph"
+];
+
+// ==== HappyCustomers Section ====
 const HappyCustomers = () => {
   const [animatedCards, setAnimatedCards] = useState({});
 
@@ -169,10 +159,8 @@ const HappyCustomers = () => {
     const handleScroll = () => {
       const section = document.getElementById('happy-customers-section');
       if (!section) return;
-
       const sectionTop = section.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
-
       if (sectionTop < windowHeight * 0.75) {
         setTimeout(() => {
           const newAnimatedCards = {};
@@ -183,13 +171,9 @@ const HappyCustomers = () => {
         }, 300);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -216,7 +200,7 @@ const HappyCustomers = () => {
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <div className="glass-card rounded-xl p-6 hover-scale" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="glass-card rounded-xl p-6 hover:scale-105 transition shadow bg-white">
                   <div className="flex items-center mb-4">
                     <img
                       src={testimonial.image}
@@ -232,7 +216,7 @@ const HappyCustomers = () => {
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-5 w-5 ${i < testimonial.rating ? 'text-gold-500 fill-gold-500' : 'text-gray-300'}`}
+                        className={`h-5 w-5 ${i < testimonial.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
                       />
                     ))}
                   </div>
@@ -260,11 +244,11 @@ function CenteredStatsBar() {
   const stats = [
     {
       icon: <IndianRupee size={20} strokeWidth={2.2} className="text-[#0074d9]" />,
-      value: 5000,
+      value: 800,
       suffix: "Cr+",
       label: "Loans Disbursed",
-      description: "Total loans this year",
-      trend: "5.2%",
+      description: "Since 2020",
+      trend: "7.2%",
       trendType: "up"
     },
     {
@@ -272,25 +256,17 @@ function CenteredStatsBar() {
       value: 24,
       suffix: "h",
       label: "Avg. Approval Time",
-      description: "Approval time (last month)",
-      trend: "1.3%",
+      description: "Last 3 months",
+      trend: "1.1%",
       trendType: "down"
     },
     {
       icon: <FaSmile className="text-yellow-600 text-xl" />,
-      value: 120000,
+      value: 15000,
       suffix: "+",
-      label: "Happy Homeowners",
-      description: "Families got their dream home",
-      trend: "3.1%",
-      trendType: "up"
-    },
-    {
-      icon: <FaChartLine className="text-purple-700 text-xl" />,
-      value: 2350,
-      label: "Active Applications",
-      description: "Applications in process",
-      trend: "0.7%",
+      label: "Happy Customers",
+      description: "Across India",
+      trend: "4.3%",
       trendType: "up"
     }
   ];
@@ -352,18 +328,6 @@ const HomeLoanPage = () => {
   });
 
   const footerRef = useRef(null);
-  const [isSticky, setIsSticky] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!footerRef.current) return;
-      const footerRect = footerRef.current.getBoundingClientRect();
-      setIsSticky(footerRect.top > window.innerHeight);
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleFormChange = e => {
     setFormData({ ...formData, [formSteps[step].name]: e.target.value });
@@ -420,7 +384,7 @@ const HomeLoanPage = () => {
         </div>
       </div>
 
-      {/* Get Your Personalized Offer (multi-step form) */}
+      {/* Get Your Personalized Offer (multi-step form, label hidden, only placeholder, w-full input) */}
       <div id="get-offer" className="container mx-auto mt-[-70px] mb-12 z-30 relative">
         <div className="bg-white rounded-xl shadow-lg p-8 max-w-xl mx-auto">
           {!leadSubmitted ? (
@@ -432,14 +396,15 @@ const HomeLoanPage = () => {
                 Get Your Personalized Offer
               </div>
               <div className="mb-2 text-gray-500 text-center">No impact on credit score. Takes less than 30 seconds.</div>
-              <div className="mb-6 w-full">
-                <label className="block mb-2 font-semibold">{formSteps[step].label}</label>
+              <div className="mb-6 w-full min-w-0">
+                {/* No label, only input with placeholder */}
                 {formSteps[step].type === "select" ? (
                   <select
-                    className="w-full border rounded px-4 py-2"
+                    className="w-full border rounded px-4 py-2 text-base"
                     value={formData[formSteps[step].name]}
                     onChange={handleFormChange}
                     required
+                    style={{ minWidth: 0 }}
                   >
                     <option value="">Select</option>
                     {formSteps[step].options.map(opt => (
@@ -448,12 +413,13 @@ const HomeLoanPage = () => {
                   </select>
                 ) : (
                   <input
-                    className="w-full border rounded px-4 py-2"
+                    className="w-full border rounded px-4 py-2 text-base"
                     type={formSteps[step].type}
                     placeholder={formSteps[step].placeholder}
                     value={formData[formSteps[step].name]}
                     onChange={handleFormChange}
                     required
+                    style={{ minWidth: 0 }}
                   />
                 )}
               </div>
@@ -491,22 +457,74 @@ const HomeLoanPage = () => {
         </div>
       </div>
 
-      {/* Centered Stats Bar */}
+      {/* ==== STATS BAR (NOW ABOVE CARDS) ==== */}
       <CenteredStatsBar />
 
+      {/* Features, Eligibility, Documents */}
+      <div className="container mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+        {/* Key Features */}
+        <div className="bg-white rounded-xl shadow p-7 border border-gray-200 flex flex-col">
+          <h2
+            className="text-lg md:text-xl font-semibold mb-4"
+            style={{ color: "#0074d9", marginTop: 0 }}
+          >
+            Key Features
+          </h2>
+          <ul className="space-y-3">
+            {features.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-gray-800 text-base">
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-600 mr-2 font-bold">
+                  {String.fromCharCode(10003)}
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* Eligibility */}
+        <div className="bg-white rounded-xl shadow p-7 border border-gray-200 flex flex-col">
+          <h2
+            className="text-lg md:text-xl font-semibold mb-4"
+            style={{ color: "#0074d9", marginTop: 0 }}
+          >
+            Eligibility
+          </h2>
+          <ol className="space-y-3 list-decimal list-inside text-gray-800 text-base pl-2">
+            {eligibility.map((item, idx) => (
+              <li key={idx} className="mb-1">{item}</li>
+            ))}
+          </ol>
+        </div>
+        {/* Documents */}
+        <div className="bg-white rounded-xl shadow p-7 border border-gray-200 flex flex-col">
+          <h2
+            className="text-lg md:text-xl font-semibold mb-4"
+            style={{ color: "#0074d9", marginTop: 0 }}
+          >
+            Required Documents
+          </h2>
+          <ul className="space-y-3 list-disc list-inside text-gray-800 text-base pl-2">
+            {documents.map((item, idx) => (
+              <li key={idx} className="mb-1">{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
       {/* Compare Top Banks for Home Loans (table section) */}
-      <div id="banks" className="container mx-auto mb-12">
+      <div id="banks" className="container mx-auto mb-12 mt-14">
         <h2
           className="text-2xl font-bold mb-6 text-center"
           style={{ color: "#0074d9" }}
         >
           Compare Top Banks for Home Loans
         </h2>
+        {/* --- Filter Inputs: width exactly like Business Loan page --- */}
         <div className="flex flex-wrap gap-4 mb-4 justify-center">
           <input
             type="number"
-            placeholder="Loan Amount (₹)"
-            className="border rounded px-4 py-2"
+            placeholder="Loan Amount"
+            className="border rounded px-4 py-2 w-44"
             value={filterAmount}
             onChange={e => setFilterAmount(e.target.value)}
             min={100000}
@@ -514,8 +532,8 @@ const HomeLoanPage = () => {
           />
           <input
             type="number"
-            placeholder="Tenure (years)"
-            className="border rounded px-4 py-2"
+            placeholder="Tenure"
+            className="border rounded px-4 py-2 w-44"
             value={filterTenure}
             onChange={e => setFilterTenure(e.target.value)}
             min={1}
@@ -551,7 +569,7 @@ const HomeLoanPage = () => {
                   </td>
                   <td className="px-4 py-3">{bank.interestRange}</td>
                   <td className="px-4 py-3">{bank.processing}</td>
-                  <td className="px-4 py-3">{`₹${bank.maxLoan.toLocaleString()}`}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">{`₹${bank.maxLoan.toLocaleString()}`}</td>
                   <td className="px-4 py-3">{bank.tenure} yrs</td>
                   <td className="px-4 py-3">
                     <Button className="bg-gradient-to-r from-blue-700 to-blue-400 text-white px-4 py-2 rounded font-bold hover:from-blue-800 hover:to-blue-500 transition">Apply</Button>
@@ -563,7 +581,7 @@ const HomeLoanPage = () => {
         </div>
       </div>
 
-      {/* Trust Badges & Media */}
+      {/* Trust Badges ONLY (media logos REMOVED) */}
       <div className="container mx-auto mb-12 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex gap-6">
           {trustBadges.map((badge, idx) => (
@@ -573,12 +591,7 @@ const HomeLoanPage = () => {
             </div>
           ))}
         </div>
-        <div className="flex gap-4 items-center">
-          <span className="text-gray-500 font-medium">As seen in:</span>
-          {mediaMentions.map((logo, idx) => (
-            <img key={idx} src={logo} alt="media" className="h-8 w-auto bg-white rounded shadow" />
-          ))}
-        </div>
+        {/* MEDIA LOGOS/AS SEEN IN SECTION REMOVED */}
       </div>
 
       {/* Testimonials Section */}

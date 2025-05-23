@@ -10,7 +10,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',           // yeh line add kari
+    outDir: 'dist',           
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
@@ -22,6 +22,3 @@ export default defineConfig({
     },
   },
 });
-git add vite.config.js
-git commit -m "Add outDir in vite build config for Vercel"
-git push origin master

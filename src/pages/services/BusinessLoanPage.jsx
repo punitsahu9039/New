@@ -8,7 +8,6 @@ import {
   FaPhone,
   FaRegClock,
   FaSmile,
-  FaChartLine,
   FaArrowUp,
   FaArrowDown,
   FaBuilding
@@ -19,16 +18,6 @@ import CountUp from "react-countup";
 // ====== Data ======
 const banks = [
   {
-    name: "HDFC Bank",
-    logo: "/banks/hdfc.png",
-    interest: 11.00,
-    interestRange: "11.00% – 21.35%",
-    processing: "Up to 2.50% + GST",
-    maxLoan: 5000000,
-    tenure: 5,
-    badge: "Fast Approval"
-  },
-  {
     name: "ICICI Bank",
     logo: "/banks/icici.png",
     interest: 10.75,
@@ -37,6 +26,16 @@ const banks = [
     maxLoan: 4000000,
     tenure: 5,
     badge: "Popular"
+  },
+  {
+    name: "HDFC Bank",
+    logo: "/banks/hdfc.png",
+    interest: 11.00,
+    interestRange: "11.00% – 21.35%",
+    processing: "Up to 2.5% + GST",
+    maxLoan: 5000000,
+    tenure: 5,
+    badge: "Fast Approval"
   },
   {
     name: "Axis Bank",
@@ -67,6 +66,26 @@ const banks = [
     maxLoan: 4000000,
     tenure: 5,
     badge: ""
+  },
+  {
+    name: "Bajaj Finserv",
+    logo: "/banks/bajaj.png",
+    interest: 17.00,
+    interestRange: "17.00% – 30.00%",
+    processing: "Up to 3% + GST",
+    maxLoan: 4000000,
+    tenure: 5,
+    badge: ""
+  },
+  {
+    name: "Fullerton India",
+    logo: "/banks/fullerton.png",
+    interest: 17.00,
+    interestRange: "17.00% – 21.00%",
+    processing: "Up to 2% + GST",
+    maxLoan: 2500000,
+    tenure: 4,
+    badge: ""
   }
 ];
 
@@ -76,17 +95,11 @@ const trustBadges = [
   { label: "4.9/5 Google Rating", icon: <FaCheckCircle className="text-yellow-500" /> }
 ];
 
-const mediaMentions = [
-  "https://upload.wikimedia.org/wikipedia/commons/6/6b/NDTV_logo.png",
-  "https://upload.wikimedia.org/wikipedia/commons/6/66/Economic_Times_logo.png",
-  "https://upload.wikimedia.org/wikipedia/commons/4/4a/Moneycontrol_logo.png"
-];
-
 const formSteps = [
-  { label: "Loan Amount (₹)", type: "number", name: "amount", placeholder: "e.g. 500000" },
-  { label: "Business Type", type: "select", name: "type", options: ["Proprietorship", "Partnership", "Private Limited", "LLP", "Others"] },
-  { label: "City", type: "text", name: "city", placeholder: "e.g. Mumbai" },
-  { label: "Mobile Number", type: "tel", name: "mobile", placeholder: "e.g. 9876543210" }
+  { label: "Loan Amount", type: "number", name: "amount", placeholder: "Loan Amount" },
+  { label: "Tenure", type: "number", name: "tenure", placeholder: "Tenure" },
+  { label: "City", type: "text", name: "city", placeholder: "City" },
+  { label: "Mobile Number", type: "tel", name: "mobile", placeholder: "Mobile Number" }
 ];
 
 const testimonials = [
@@ -113,17 +126,42 @@ const testimonials = [
   }
 ];
 
-const BusinessHappyCustomers = () => {
+const features = [
+  "Loan up to ₹50 Lakhs",
+  "No collateral required",
+  "Approval in 24 hours",
+  "Flexible tenure up to 5 years",
+  "Minimal documentation",
+  "Flexible repayment options"
+];
+
+const eligibility = [
+  "Business vintage ≥ 2 years",
+  "Turnover ≥ ₹10 Lakhs/year",
+  "Owner age 25–65 years",
+  "Profitable business",
+  "Credit score 700+"
+];
+
+const documents = [
+  "ID Proof (Aadhaar, PAN, Passport, Voter ID)",
+  "Address Proof (Aadhaar, Passport, Utility Bill)",
+  "Business Proof (GST, Shop Act, etc.)",
+  "Financials (P&L, Balance Sheet 2 yrs)",
+  "Bank Statements (6 months)",
+  "ITR (2 years)"
+];
+
+// ==== HappyCustomers Section ====
+const HappyCustomers = () => {
   const [animatedCards, setAnimatedCards] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
-      const section = document.getElementById('business-happy-customers-section');
+      const section = document.getElementById('happy-customers-section');
       if (!section) return;
-
       const sectionTop = section.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
-
       if (sectionTop < windowHeight * 0.75) {
         setTimeout(() => {
           const newAnimatedCards = {};
@@ -134,27 +172,23 @@ const BusinessHappyCustomers = () => {
         }, 300);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <section
-      id="business-happy-customers-section"
+      id="happy-customers-section"
       className="section-padding bg-gray-50 h-auto md:h-full"
     >
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-gradient">Business Owners Love Us</span>
+            <span className="text-gradient">Happy Customers</span>, Real Stories
           </h2>
           <p className="text-gray-600">
-            Hear from real entrepreneurs who took their business to the next level with our loans.
+            Don't just take our word for it. See what our clients have to say about their experience with Hously Finserv.
           </p>
         </div>
         <div className="relative">
@@ -167,7 +201,7 @@ const BusinessHappyCustomers = () => {
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <div className="glass-card rounded-xl p-6 hover-scale" data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="glass-card rounded-xl p-6 hover:scale-105 transition shadow bg-white">
                   <div className="flex items-center mb-4">
                     <img
                       src={testimonial.image}
@@ -183,7 +217,7 @@ const BusinessHappyCustomers = () => {
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`h-5 w-5 ${i < testimonial.rating ? 'text-gold-500 fill-gold-500' : 'text-gray-300'}`}
+                        className={`h-5 w-5 ${i < testimonial.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
                       />
                     ))}
                   </div>
@@ -207,7 +241,7 @@ const BusinessHappyCustomers = () => {
   );
 };
 
-function BusinessStatsBar() {
+function CenteredStatsBar() {
   const stats = [
     {
       icon: <IndianRupee size={20} strokeWidth={2.2} className="text-[#0074d9]" />,
@@ -286,7 +320,7 @@ function BusinessStatsBar() {
 const BusinessLoanPage = () => {
   const [formData, setFormData] = useState({
     amount: "",
-    type: "",
+    tenure: "",
     city: "",
     mobile: ""
   });
@@ -358,7 +392,7 @@ const BusinessLoanPage = () => {
         </div>
       </div>
 
-      {/* Get Your Personalized Offer (multi-step form) */}
+      {/* Get Your Personalized Offer (multi-step form, label hidden, only placeholder, w-full input) */}
       <div id="get-offer" className="container mx-auto mt-[-70px] mb-12 z-30 relative">
         <div className="bg-white rounded-xl shadow-lg p-8 max-w-xl mx-auto">
           {!leadSubmitted ? (
@@ -370,14 +404,15 @@ const BusinessLoanPage = () => {
                 Get Your Personalized Offer
               </div>
               <div className="mb-2 text-gray-500 text-center">No impact on credit score. Takes less than 30 seconds.</div>
-              <div className="mb-6 w-full">
-                <label className="block mb-2 font-semibold">{formSteps[step].label}</label>
+              <div className="mb-6 w-full min-w-0">
+                {/* No label, only input with placeholder */}
                 {formSteps[step].type === "select" ? (
                   <select
-                    className="w-full border rounded px-4 py-2"
+                    className="w-full border rounded px-4 py-2 text-base"
                     value={formData[formSteps[step].name]}
                     onChange={handleFormChange}
                     required
+                    style={{ minWidth: 0 }}
                   >
                     <option value="">Select</option>
                     {formSteps[step].options.map(opt => (
@@ -386,12 +421,13 @@ const BusinessLoanPage = () => {
                   </select>
                 ) : (
                   <input
-                    className="w-full border rounded px-4 py-2"
+                    className="w-full border rounded px-4 py-2 text-base"
                     type={formSteps[step].type}
                     placeholder={formSteps[step].placeholder}
                     value={formData[formSteps[step].name]}
                     onChange={handleFormChange}
                     required
+                    style={{ minWidth: 0 }}
                   />
                 )}
               </div>
@@ -420,7 +456,7 @@ const BusinessLoanPage = () => {
               <div className="mb-4">Your details have been submitted.<br />Our expert will contact you soon with the best business loan offers.</div>
               <Button
                 className="bg-blue-600 text-white px-6 py-2 rounded font-bold shadow hover:bg-blue-700 transition"
-                onClick={() => { setLeadSubmitted(false); setStep(0); setFormData({ amount: "", type: "", city: "", mobile: "" }); }}
+                onClick={() => { setLeadSubmitted(false); setStep(0); setFormData({ amount: "", tenure: "", city: "", mobile: "" }); }}
               >
                 Submit Another
               </Button>
@@ -429,8 +465,59 @@ const BusinessLoanPage = () => {
         </div>
       </div>
 
-      {/* Stats Bar */}
-      <BusinessStatsBar />
+      {/* ==== STATS BAR (NOW ABOVE CARDS) ==== */}
+      <CenteredStatsBar />
+
+      {/* Features, Eligibility, Documents */}
+      <div className="container mx-auto mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+        {/* Key Features */}
+        <div className="bg-white rounded-xl shadow p-7 border border-gray-200 flex flex-col">
+          <h2
+            className="text-lg md:text-xl font-semibold mb-4"
+            style={{ color: "#0074d9", marginTop: 0 }}
+          >
+            Key Features
+          </h2>
+          <ul className="space-y-3">
+            {features.map((item, idx) => (
+              <li key={idx} className="flex items-start gap-2 text-gray-800 text-base">
+                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-600 mr-2 font-bold">
+                  {String.fromCharCode(10003)}
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* Eligibility */}
+        <div className="bg-white rounded-xl shadow p-7 border border-gray-200 flex flex-col">
+          <h2
+            className="text-lg md:text-xl font-semibold mb-4"
+            style={{ color: "#0074d9", marginTop: 0 }}
+          >
+            Eligibility
+          </h2>
+          <ol className="space-y-3 list-decimal list-inside text-gray-800 text-base pl-2">
+            {eligibility.map((item, idx) => (
+              <li key={idx} className="mb-1">{item}</li>
+            ))}
+          </ol>
+        </div>
+        {/* Documents */}
+        <div className="bg-white rounded-xl shadow p-7 border border-gray-200 flex flex-col">
+          <h2
+            className="text-lg md:text-xl font-semibold mb-4"
+            style={{ color: "#0074d9", marginTop: 0 }}
+          >
+            Required Documents
+          </h2>
+          <ul className="space-y-3 list-disc list-inside text-gray-800 text-base pl-2">
+            {documents.map((item, idx) => (
+              <li key={idx} className="mb-1">{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
 
       {/* Compare Top Banks for Business Loans (table section) */}
       <div id="banks" className="container mx-auto mb-12 mt-14">
@@ -440,11 +527,12 @@ const BusinessLoanPage = () => {
         >
           Compare Top Banks for Business Loans
         </h2>
+        {/* --- Filter Inputs: width exactly like Home/Property/Balance Transfer page --- */}
         <div className="flex flex-wrap gap-4 mb-4 justify-center">
           <input
             type="number"
-            placeholder="Loan Amount (₹)"
-            className="border rounded px-4 py-2"
+            placeholder="Loan Amount"
+            className="border rounded px-4 py-2 w-44"
             value={filterAmount}
             onChange={e => setFilterAmount(e.target.value)}
             min={100000}
@@ -452,8 +540,8 @@ const BusinessLoanPage = () => {
           />
           <input
             type="number"
-            placeholder="Tenure (years)"
-            className="border rounded px-4 py-2"
+            placeholder="Tenure"
+            className="border rounded px-4 py-2 w-44"
             value={filterTenure}
             onChange={e => setFilterTenure(e.target.value)}
             min={1}
@@ -489,7 +577,7 @@ const BusinessLoanPage = () => {
                   </td>
                   <td className="px-4 py-3">{bank.interestRange}</td>
                   <td className="px-4 py-3">{bank.processing}</td>
-                  <td className="px-4 py-3">{`₹${bank.maxLoan.toLocaleString()}`}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">{`₹${bank.maxLoan.toLocaleString()}`}</td>
                   <td className="px-4 py-3">{bank.tenure} yrs</td>
                   <td className="px-4 py-3">
                     <Button className="bg-gradient-to-r from-blue-700 to-blue-400 text-white px-4 py-2 rounded font-bold hover:from-blue-800 hover:to-blue-500 transition">Apply</Button>
@@ -501,7 +589,7 @@ const BusinessLoanPage = () => {
         </div>
       </div>
 
-      {/* Trust Badges & Media */}
+      {/* Trust Badges ONLY (media logos REMOVED) */}
       <div className="container mx-auto mb-12 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex gap-6">
           {trustBadges.map((badge, idx) => (
@@ -511,16 +599,11 @@ const BusinessLoanPage = () => {
             </div>
           ))}
         </div>
-        <div className="flex gap-4 items-center">
-          <span className="text-gray-500 font-medium">As seen in:</span>
-          {mediaMentions.map((logo, idx) => (
-            <img key={idx} src={logo} alt="media" className="h-8 w-auto bg-white rounded shadow" />
-          ))}
-        </div>
+        {/* MEDIA LOGOS/AS SEEN IN SECTION REMOVED */}
       </div>
 
       {/* Testimonials Section */}
-      <BusinessHappyCustomers />
+      <HappyCustomers />
 
       {/* Footer (blank) */}
       <footer ref={footerRef}></footer>
