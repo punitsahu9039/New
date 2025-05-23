@@ -34,7 +34,7 @@ const introContent = [
 
 const sections = [
   {
-    icon: <Globe size={22} color="#FF5722" />,
+    icon: <Globe size={22} color="#0074d9" />,
     title: "Introduction",
     content: [
       "Welcome to our Privacy Policy. Here you’ll find how we collect, use, and safeguard your information when you use our website or services.",
@@ -43,7 +43,7 @@ const sections = [
     ],
   },
   {
-    icon: <IdCard size={22} color="#22b573" />,
+    icon: <IdCard size={22} color="#0074d9" />,
     title: "Information We Collect",
     content: [
       "We collect personal information such as your name, email, phone number, address, PAN, Aadhaar, employment details, income, and credit score.",
@@ -52,7 +52,7 @@ const sections = [
     ],
   },
   {
-    icon: <Cookie size={22} color="#f39c12" />,
+    icon: <Cookie size={22} color="#0074d9" />,
     title: "Cookies & Tracking",
     content: [
       "Cookies are small files stored on your device to enhance your experience, remember your preferences, and keep you logged in.",
@@ -61,7 +61,7 @@ const sections = [
     ],
   },
   {
-    icon: <FileText size={22} color="#8e44ad" />,
+    icon: <FileText size={22} color="#0074d9" />,
     title: "How We Use Data",
     content: [
       "We use your data to provide and improve our services, process your applications, and personalize your experience.",
@@ -70,7 +70,7 @@ const sections = [
     ],
   },
   {
-    icon: <Shield size={22} color="#00b8d9" />,
+    icon: <Shield size={22} color="#0074d9" />,
     title: "Data Security",
     content: [
       "We implement industry-standard security measures such as SSL encryption, firewalls, and secure servers to protect your data.",
@@ -79,7 +79,7 @@ const sections = [
     ],
   },
   {
-    icon: <Link2 size={22} color="#e74c3c" />,
+    icon: <Link2 size={22} color="#0074d9" />,
     title: "Third-Party Services",
     content: [
       "We may share your data with trusted partners, financial institutions, or credit bureaus to process your requests and provide services.",
@@ -88,7 +88,7 @@ const sections = [
     ],
   },
   {
-    icon: <UserCog size={22} color="#f1c40f" />,
+    icon: <UserCog size={22} color="#0074d9" />,
     title: "Your Rights",
     content: [
       "You have the right to access, update, or request deletion of your personal data held by us.",
@@ -110,7 +110,7 @@ const sections = [
 const PrivacyPolicy = () => (
   <Layout>
     {/* Heading with gradient */}
-    <section className="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-16 text-center px-4 font-sans">
+    <section className="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-12 text-center px-4 font-sans">
       <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-2 tracking-tight">
         Privacy <span className="text-yellow-300">Policy</span>
       </h1>
@@ -189,7 +189,9 @@ const PrivacyPolicy = () => (
               <div className="flex items-center gap-3 mb-2">
                 <div className="border-l-4 border-[#0074d9] pl-3 flex items-center gap-2">
                   {sec.icon}
-                  <h2 className="text-xl md:text-2xl font-bold text-[#0074d9]">{sec.title}</h2>
+                  <h2 className="text-xl md:text-2xl font-bold text-black">
+                    {sec.title}
+                  </h2>
                 </div>
               </div>
               {sec.content.map((p, i) => (

@@ -5,16 +5,27 @@ import { FaGift, FaUserPlus, FaCheckCircle, FaRegSmile } from "react-icons/fa";
 const fontLink = "https://fonts.cdnfonts.com/css/glacial-indifference-2";
 
 const ReferAndEarn = () => {
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    contact: "",
+  });
   const [message, setMessage] = useState("");
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email.trim() === "") {
-      setMessage("Please enter an email address.");
+    if (formData.name.trim() === "" || formData.email.trim() === "" || formData.contact.trim() === "") {
+      setMessage("Please fill in all fields.");
     } else {
       setMessage("Referral sent successfully!");
-      setEmail("");
+      setFormData({ name: "", email: "", contact: "" });
     }
   };
 
@@ -63,11 +74,6 @@ const ReferAndEarn = () => {
             margin: 0 auto;
             line-height: 1.6;
             opacity: 0.98;
-          }
-          .refer-gradient-heading .hously-normal {
-            color: #16213e !important;
-            font-weight: 700;
-            background: none !important;
           }
           .refer-main-container {
             max-width: 67%;
@@ -142,6 +148,61 @@ const ReferAndEarn = () => {
             .refer-steps { flex-direction: column; gap: 0; }
             .refer-step { margin-bottom: 18px; }
           }
+
+          /* New Form Style */
+          .refer-form-container {
+            background-color: #fff;
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+          }
+
+          .refer-form-container:hover {
+            transform: scale(1.03);
+          }
+
+          .refer-form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0074d9;
+            margin-bottom: 20px;
+          }
+
+          .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 1rem;
+            transition: all 0.2s ease-in-out;
+            box-shadow: none;
+          }
+
+          .form-control:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+          }
+
+          .submit-btn {
+            background-color: #2563eb;
+            color: #fff;
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            width: 100%;
+            transition: background-color 0.3s;
+            font-size: 1.1rem;
+          }
+
+          .submit-btn:hover {
+            background-color: #1e4bb0;
+          }
+
+          .alert {
+            border-radius: 8px;
+          }
         `}
       </style>
 
@@ -177,7 +238,7 @@ const ReferAndEarn = () => {
               Refer Your Friend
             </div>
             <div style={{ color: "#555", fontSize: "0.97rem" }}>
-              Enter your friend’s email and send them an invite.
+              Enter your friend’s name, email, and contact number to send them an invite.
             </div>
           </div>
           <div className="refer-step">
@@ -217,33 +278,50 @@ const ReferAndEarn = () => {
 
         {/* Refer Form */}
         <div className="container refer-root py-4 px-3" style={{ maxWidth: 600 }}>
-          <div className="bg-white p-4 shadow rounded border" style={{ borderRadius: "18px" }}>
-            <h5 className="mb-3 fw-bold" style={{ color: "#0074d9" }}>
-              Enter Your Friend's Email to Refer
+          <div className="refer-form-container">
+            <h5 className="refer-form-title">
+              Enter Your Friend's Details to Refer
             </h5>
             <form onSubmit={handleSubmit}>
-              <div className="input-group mb-3">
+              <div className="mb-3">
+                <input
+                  type="text"
+                  name="name"
+                  className="form-control"
+                  placeholder="Friend's Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
                 <input
                   type="email"
+                  name="email"
                   className="form-control"
-                  placeholder="Enter email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Friend's Email"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
-                  style={{ fontFamily: "'Glacial Indifference', sans-serif" }}
                 />
-                <button
-                  className="btn"
-                  type="submit"
-                  style={{
-                    backgroundColor: "#0074d9",
-                    color: "#fff",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Refer
-                </button>
               </div>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  name="contact"
+                  className="form-control"
+                  placeholder="Friend's Contact Number"
+                  value={formData.contact}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <button
+                className="submit-btn"
+                type="submit"
+              >
+                Refer
+              </button>
               {message && (
                 <div
                   className={`alert ${

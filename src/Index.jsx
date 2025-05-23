@@ -11,6 +11,7 @@ import HappyCustomers from './components/HappyCustomers/HappyCustomers';
 import HappyCustomerStats from './components/HappyCustomerStats';
 import ChatWidth from './components/ChatWidget';
 import LoanCalculators from './components/LoanCalculators/LoanCalculators';
+import BlogsPage from './components/BlogsPage';
 
 const Index = () => {
   useEffect(() => {
@@ -50,20 +51,10 @@ const Index = () => {
       <div className="animate-on-scroll">
         <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
           <div className="w-full mx-auto">
-            <div className="text-center mb-10">
-              <h1 className="text-4xl font-bold mb-2">
-                <span className="text-black">Loan </span>
-                <span className="text-[#0074d9]">Calculators</span>
-              </h1>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Plan your finances with our comprehensive loan calculators. Make informed decisions about your loans and financial future.
-              </p>
-            </div>
-            <LoanCalculators />
+        <LoanCalculators />
           </div>
         </div>
       </div>
-
       <div className="animate-on-scroll">
         <TrendingOffers />
       </div>
@@ -81,6 +72,9 @@ const Index = () => {
       </div>
       <div className="animate-on-scroll">
         <ChatWidth />
+      </div>
+        <div className="animate-on-scroll">
+        <BlogsPage/>
       </div>
     </Layout>
   );

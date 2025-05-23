@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Pages
 import Index from "./Index";
 import NotFound from "./pages/NotFound";
+import MobileNavbar from "./components/Navbar/MobileNavbar";
 
 // Service Pages
 import HomeLoanPage from "./pages/services/HomeLoanPage";
@@ -17,6 +18,7 @@ import BusinessLoanPage from "./pages/services/BusinessLoanPage";
 
 
 // Calculator Pages
+import LoanCalculators from "./components/LoanCalculators/LoanCalculators";
 import BalanceTransferCalculatorPage from "./pages/calculators/BalanceTransferCalculatorPage";
 import EMICalculatorPage from "./pages/calculators/EMICalculatorPage";
 import EligibilityCalculatorPage from "./pages/calculators/EligibilityCalculatorPage";
@@ -37,6 +39,8 @@ import BankPartnerDetails from "./pages/BankPartnerDetails";
 import ReferAndEarn from "./pages/services/ReferAndEarn";
 import JoinAsPartner from "./pages/services/JoinAsPartner";
 
+
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -45,16 +49,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+      <MobileNavbar />
         <Routes>
           <Route path="/" element={<Index />} />
+         
           
           {/* Service Pages */}
-          <Route path="/services/home-loan" element={<HomeLoanPage />} />
-          <Route path="/services/property-loan" element={<PropertyLoanPage />} />
-          <Route path="/services/balance-transfer" element={<BalanceTransferPage />} />
-          <Route path="/services/business-loan" element={<BusinessLoanPage />} />
+          <Route path="/home-loan" element={<HomeLoanPage />} />
+          <Route path="/property-loan" element={<PropertyLoanPage />} />
+          <Route path="/balance-transfer" element={<BalanceTransferPage />} />
+          <Route path="/business-loan" element={<BusinessLoanPage />} />
           
           {/* Calculator Pages */}
+          <Route path="/calculators" element={<LoanCalculators/>}/>
           <Route path="/calculators/emi" element={<EMICalculatorPage />} />
           <Route path="/calculators/eligibility" element={<EligibilityCalculatorPage />} />
           <Route path="/calculators/foreclose" element={<ForecloseCalculatorPage />} />
@@ -64,7 +71,7 @@ const App = () => (
           {/* Other Pages */}
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/offers" element={<OffersPage />} />
+          <Route path="/offers&cashback" element={<OffersPage />} />
           <Route path="/loans" element={<LoanServicesFooter />} />
            <Route path="/terms" element={<TermsAndConditions/>} />
             <Route path="/privacy" element={<PrivacyPolicy/>} />

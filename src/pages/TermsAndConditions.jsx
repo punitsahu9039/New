@@ -16,10 +16,7 @@ const jumpLinks = [
   { text: "How to Update Your Terms and Conditions?", href: "#update-tc" },
   { text: "What Happens if Users Break the Rules?", href: "#user-violation" },
   { text: "Contact Information for Legal Queries", href: "#contact-legal" },
-  // --- 3 new points below ---
   { text: "Can I Copy Terms and Conditions from Other Sites?", href: "#copy-tc" },
-  // { text: "How Often Should I Review My Terms?", href: "#review-tc" },
-  // { text: "What If a User Disagrees With My Terms?", href: "#user-disagree" },
 ];
 
 const termsImage =
@@ -27,11 +24,19 @@ const termsImage =
 
 const TermsAndConditions = () => (
   <Layout>
-    {/* Gradient Heading */}
-    <section className="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-16 text-center px-4">
+    {/* Font import */}
+    <style jsx global>{`
+      @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+    `}</style>
+
+    {/* Hero Section with normal height and tagline */}
+    <section className="bg-gradient-to-r from-blue-600 to-blue-400 text-white text-center px-4 py-12">
       <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-2">
         Terms and <span className="text-yellow-300">Conditions</span>
       </h1>
+      <p className="text-lg md:text-xl opacity-90">
+        Set clear rules for your users and protect your business with our comprehensive <br/>Terms and Conditions guide.
+      </p>
     </section>
 
     {/* In short & Jump to... */}
@@ -59,7 +64,7 @@ const TermsAndConditions = () => (
             src={termsImage}
             alt="Online Terms and Conditions"
             className="mt-8 rounded-lg shadow-md w-full max-w-4xl mx-auto"
-            style={{ objectFit: 'cover', height: 'auto' }}
+            style={{ objectFit: 'cover', height: '40vh' }}
           />
         </div>
         {/* Right: Jump to... */}
@@ -96,7 +101,7 @@ const TermsAndConditions = () => (
           Terms and Conditions (T&amp;C) – also known as Terms of Service, Terms of Use, or End User License Agreement (EULA) – represent a contract between you, the provider of a service, and your users.
         </p>
         <p className="mb-3 text-[#1a2b49] text-[18px]">
-          They are a legally binding document and allow you to set your rules,within applicable law. For example, they may help you define how users can interact with your product or service, how your original content can be used, or the rules concerning the cancellation or suspension of a user’s account.
+          They are a legally binding document and allow you to set your rules, within applicable law. For example, they may help you define how users can interact with your product or service, how your original content can be used, or the rules concerning the cancellation or suspension of a user’s account.
         </p>
       </div>
       <hr className="my-10 border-gray-200" />

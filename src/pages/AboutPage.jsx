@@ -1,5 +1,3 @@
-// AboutPage.jsx
-
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBuilding, FaHandshake, FaRupeeSign, FaUsers } from "react-icons/fa";
@@ -27,6 +25,12 @@ const directors = [
     designation: "Managing Director & CEO",
     image: "https://randomuser.me/api/portraits/men/75.jpg",
     profile: "Shri Debadatta Chand assumed charge as MD & CEO of the Bank on 1st July 2023...",
+  },
+  {
+    name: "Shri Rajesh Kumar",
+    designation: "Director",
+    image: "https://randomuser.me/api/portraits/men/77.jpg",
+    profile: "Shri Rajesh Kumar has over 30 years of experience in the banking industry and joined the Board as Director in March 2024. He is known for his leadership in digital transformation and financial inclusion.",
   },
 ];
 
@@ -57,21 +61,22 @@ const teamMembers = [
   },
 ];
 
+// MISSION icon: Naya black target icon
 const missionVisionValues = [
   {
     title: "MISSION",
-    icon: "https://cdn-icons-png.flaticon.com/512/189/189683.png",
-    text: "To provide innovative and reliable financial solutions...",
+    icon: "https://cdn-icons-png.flaticon.com/512/1208/1208170.png",
+    text: "Empowering your homeownership journey with fast, transparent, and trusted loan solutions.",
   },
   {
     title: "VISION",
     icon: "https://cdn-icons-png.flaticon.com/512/159/159604.png",
-    text: "To be the leading financial institution recognized for integrity...",
+    text: "To be the most trusted and leading financial institution, recognized for integrity, customer-centricity, and technological innovation in the lending sector.",
   },
   {
     title: "VALUES",
     icon: "https://cdn-icons-png.flaticon.com/512/2910/2910761.png",
-    text: "Integrity, Customer Focus, Innovation, Collaboration, and Social Responsibility...",
+    text: "Integrity, Customer Focus, Innovation, Collaboration, and Social Responsibility are at the heart of everything we do.",
   },
 ];
 
@@ -103,27 +108,23 @@ const AboutPage = () => {
     setSelectedPerson(null);
   };
 
+  // Height for both sections
+  const sectionMinHeight = "370px";
+
   return (
     <Layout>
       <div className="min-h-screen bg-gray-50 text-gray-800">
-        {/* HEADER with gradient */}
-        <section className="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-16 text-center px-4">
-          <motion.h5
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="uppercase tracking-widest font-bold text-yellow-300 mb-4"
-          >
-            About Us
-          </motion.h5>
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7 }}
-            className="text-4xl md:text-5xl font-extrabold leading-tight"
-          >
-            An Inspiration, And Now <br />
-            <span className="text-yellow-300">We Inspire.</span>
-          </motion.h1>
+        {/* HERO SECTION */}
+        <section className="relative bg-gradient-to-r from-blue-600 to-blue-400 text-white py-12 text-center px-4 font-sans overflow-hidden">
+          <div className="container mx-auto px-4 text-center max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-2 tracking-tight">
+              <span className="text-white">About </span>
+              <span className="text-yellow-400">Us</span>
+            </h1>
+            <p className="text-lg md:text-xl opacity-90">
+              We help you unlock your dream home with fast, transparent, and trusted loan solutions.
+            </p>
+          </div>
         </section>
 
         {/* COMPANY INTRO + STATS */}
@@ -134,28 +135,66 @@ const AboutPage = () => {
           animate="visible"
         >
           <div className="flex flex-col md:flex-row md:gap-12 items-stretch">
-            {/* Left Content */}
-            <motion.div className="md:flex-1 mb-10 md:mb-0 h-full" variants={itemVariants}>
-              <h3 className="text-3xl font-bold mb-4">About Hously Finntech</h3>
-              <p className="text-gray-600 leading-relaxed text-lg max-w-xl">
-                Hously-Finntech is a leading online lending platform, helping millions achieve their dreams of home ownership. We provide seamless access to loan products from over 96 banks and NBFCs, enabling fast, transparent and reliable financial solutions.
+            {/* Left Content: About Hously Finntech */}
+            <motion.div
+              className="md:flex-1 mb-10 md:mb-0 h-full flex flex-col justify-center"
+              variants={itemVariants}
+              style={{
+                minHeight: sectionMinHeight,
+                height: "100%",
+              }}
+            >
+              <h3 className="text-3xl font-bold mb-4 text-center text-black">
+                About <span className="text-black">Hously Finntech</span>
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-lg max-w-xl mx-auto mb-3 text-center">
+                <span className="font-semibold text-blue-600">Hously-Finntech</span> is a leading online lending platform helping millions achieve their dream of home ownership by providing access to loan products from over 96 banks and NBFCs.
               </p>
+              <ul className="list-disc pl-6 text-gray-700 text-base mb-3 max-w-xl mx-auto">
+                <li>
+                  <span className="font-semibold text-blue-600">Wide Loan Options:</span> Home loans, balance transfers.
+                </li>
+                <li>
+                  <span className="font-semibold text-blue-600">Top-Ups:</span> Hassle-free top-up loans for your extra needs.
+                </li>
+                <li>
+                  <span className="font-semibold text-blue-600">Trusted Partners:</span> 96+ banks & NBFCs.
+                </li>
+                <li>
+                  <span className="font-semibold text-blue-600">Customer Focus:</span> Transparent and quick loan processing.
+                </li>
+              </ul>
+              <div className="flex flex-wrap gap-3 mt-2 justify-center">
+                <span className="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold shadow border border-blue-100">
+                  <FaUsers className="mr-1" /> 1,50,000+ Channel Partners
+                </span>
+                <span className="inline-flex items-center px-3 py-1 bg-yellow-50 text-yellow-700 rounded-full text-sm font-semibold shadow border border-yellow-100">
+                  <FaHandshake className="mr-1" /> 300M+ USD Annual Transactions
+                </span>
+                <span className="inline-flex items-center px-3 py-1 bg-green-50 text-green-700 rounded-full text-sm font-semibold shadow border border-green-100">
+                  <FaBuilding className="mr-1" /> 96+ Banks & NBFCs
+                </span>
+              </div>
             </motion.div>
 
             {/* Right: Offering Products */}
             <motion.div
-              className="md:flex-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg p-8 shadow-lg h-full flex flex-col justify-between"
+              className="md:flex-1 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-lg p-4 shadow-lg flex flex-col justify-between"
               variants={itemVariants}
+              style={{
+                minHeight: sectionMinHeight,
+                height: "100%",
+              }}
             >
               <div>
-                <h5 className="font-bold text-yellow-400 mb-4 text-lg">Offering Products</h5>
-                <p className="mb-6">From Over 96 Banks and NBFCs</p>
-                <hr className="border-yellow-400 mb-6" />
+                <h5 className="font-bold text-yellow-400 mb-2 text-lg">Offering Products</h5>
+                <p className="mb-2">From Over 96 Banks and NBFCs</p>
+                <hr className="border-yellow-400 mb-2" />
                 <div>
                   {stats.map((stat, idx) => (
                     <motion.div
                       key={idx}
-                      className="flex items-center gap-4 mb-5"
+                      className="flex items-center gap-4 mb-2"
                       whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
